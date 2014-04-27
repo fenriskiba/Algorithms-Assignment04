@@ -15,6 +15,7 @@ int main(int argc, char *argv[])
 
         cout << "What is the maximum weight of your knapsack?" << endl;
         cin >> maxWeight;
+        cout << endl;
         
         if(argc == 3)
         {

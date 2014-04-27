@@ -4,7 +4,7 @@ using namespace std;
 
 /*NON-MEMBER FUNCTIONS*/
 
-unsigned GetNumberOfDigits(unsigned i)
+unsigned getNumberOfDigits(unsigned i)
 {
     return i > 0 ? (int)log10((double)i) + 1 : 1;
 }
@@ -29,6 +29,7 @@ Knapsack::Knapsack(string fileName)
         string tempWeight;
         KnapsackItem tempItem;
         
+        //Find Value from Line
         while(temp[stringIterator] != '.')
         {
             tempValue += temp[stringIterator];
@@ -36,14 +37,15 @@ Knapsack::Knapsack(string fileName)
         }   
         stringIterator++;
         
+        //Find Weight from Line
         for(int i = stringIterator; i < temp.length(); i++)
         {
             tempWeight += temp[i];
         }
         
+        //Add new item to list
         tempItem.value = atoi(tempValue.c_str());
         tempItem.weight = atoi(tempWeight.c_str());
-        
         itemList.push_back(tempItem);
     }
     numberOfItems = itemList.size();
@@ -81,11 +83,20 @@ void Knapsack::generateTable(int maxWeight)
 
 void Knapsack::displayTable(int maxWeight)
 {
+    //Display Items
+    for(int i = 0; i < numberOfItems; i++)
+    {
+         cout << "Item " << i + 1 << endl
+                << "Value: " << itemList.at(i).value << endl
+                << "Weight: " << itemList.at(i).weight << endl << endl;
+    }
+    
+    //Display Table
     for(int y = 0; y <= numberOfItems; y++)
     {
         for(int x = 0; x <= maxWeight; x++)
         {
-            int temp = GetNumberOfDigits(maxValueTable[x][y]);
+            int temp = getNumberOfDigits(maxValueTable[x][y]);
         
             if(x == 0)
                 cout << maxValueTable[x][y];
@@ -94,5 +105,7 @@ void Knapsack::displayTable(int maxWeight)
         }
         cout << endl;
     }
+    
+    cout << endl;
 }
 
