@@ -9,18 +9,23 @@ int main(int argc, char *argv[])
     if(argc == 2 || argc == 3)
     {
         int maxWeight;
+        int maxValue;
         string fileName = argv[1];
         Knapsack runner(fileName);
-        
-        runner.generateTable();
-        
-        if(argc == 3)
-            runner.displayTable();
-        
+
         cout << "What is the maximum weight of your knapsack?" << endl;
         cin >> maxWeight;
         
-        cout << "The maximum value you can hold in your knapsack is " << runner.maxValue(maxWeight) << endl;
+        if(argc == 3)
+        {
+            maxValue = runner.maxValueFromWeight(maxValue, true);
+        }
+        else
+        {
+            maxValue = runner.maxValueFromWeight(maxValue, false);
+        }
+        
+        cout << "The maximum value you can hold in your knapsack is " << maxValue << endl;
     }
     else
     {

@@ -17,15 +17,16 @@ class Knapsack
     private:
         int** maxValueTable;
         KnapsackItem* items;
+        int numberOfItems;
         
     public:
         Knapsack(string fileName);
-        void generateTable();
-        void displayTable();
-        int maxValue(int maxWeight);
+        int maxValueFromWeight(int maxWeight, bool showTable);
         
     private:
-        
+        void generateTable(int maxWeight);
+        void displayTable(int maxWeight);
+                
 };
 
 #endif

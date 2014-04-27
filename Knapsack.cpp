@@ -2,11 +2,23 @@
 
 using namespace std;
 
+/*PUBLIC FUNCTIONS*/
+
 Knapsack::Knapsack(string fileName){}
 
-void Knapsack::generateTable(){}
+int Knapsack::maxValueFromWeight(int maxWeight, bool showTable)
+{
+    generateTable(maxWeight);
+    
+    if(showTable)
+        displayTable(maxWeight);
+        
+    return maxValueTable[maxWeight][numberOfItems];
+}
 
-void Knapsack::displayTable(){}
+/*PRIVATE FUNCTIONS*/
 
-int Knapsack::maxValue(int maxWeight){}
+void Knapsack::generateTable(int maxWeight){}
+
+void Knapsack::displayTable(int maxWeight){}
 
