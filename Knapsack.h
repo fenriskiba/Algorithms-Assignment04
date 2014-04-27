@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+#include <fstream>
+#include <cstdlib>
 
 using namespace std;
 
@@ -16,7 +19,7 @@ class Knapsack
 {
     private:
         int** maxValueTable;
-        KnapsackItem* items;
+        vector<KnapsackItem> itemList;
         int numberOfItems;
         
     public:
