@@ -18,11 +18,11 @@ int main(int argc, char *argv[])
         
         if(argc == 3)
         {
-            maxValue = runner.maxValueFromWeight(maxValue, true);
+            maxValue = runner.maxValueFromWeight(maxWeight, true);
         }
         else
         {
-            maxValue = runner.maxValueFromWeight(maxValue, false);
+            maxValue = runner.maxValueFromWeight(maxWeight, false);
         }
         
         cout << "The maximum value you can hold in your knapsack is " << maxValue << endl;

@@ -2,6 +2,13 @@
 
 using namespace std;
 
+/*NON-MEMBER FUNCTIONS*/
+
+unsigned GetNumberOfDigits(unsigned i)
+{
+    return i > 0 ? (int)log10((double)i) + 1 : 1;
+}
+
 /*PUBLIC FUNCTIONS*/
 
 Knapsack::Knapsack(string fileName)
@@ -54,7 +61,38 @@ int Knapsack::maxValueFromWeight(int maxWeight, bool showTable)
 
 /*PRIVATE FUNCTIONS*/
 
-void Knapsack::generateTable(int maxWeight){}
+void Knapsack::generateTable(int maxWeight)
+{
+    maxValueTable = new int*[maxWeight + 1];
+    for(int i = 0; i < maxWeight + 1; i++)
+    {
+        maxValueTable[i] = new int[numberOfItems + 1];
+    }
+    
+    //dummy values to test out display
+    for(int y = 0; y <= numberOfItems; y++)
+    {
+        for(int x = 0; x <= maxWeight; x++)
+        {
+            maxValueTable[x][y] = x;
+        }
+    }
+}
 
-void Knapsack::displayTable(int maxWeight){}
+void Knapsack::displayTable(int maxWeight)
+{
+    for(int y = 0; y <= numberOfItems; y++)
+    {
+        for(int x = 0; x <= maxWeight; x++)
+        {
+            int temp = GetNumberOfDigits(maxValueTable[x][y]);
+        
+            if(x == 0)
+                cout << maxValueTable[x][y];
+            else
+                cout << setw(temp + 2) << maxValueTable[x][y];
+        }
+        cout << endl;
+    }
+}
 
