@@ -20,7 +20,7 @@ struct KnapsackItem
 class Knapsack
 {
     private:
-        int** maxValueTable;
+        vector<vector<int> > maxValueTable;
         vector<KnapsackItem> itemList;
         int numberOfItems;
         

@@ -65,18 +65,27 @@ int Knapsack::maxValueFromWeight(int maxWeight, bool showTable)
 
 void Knapsack::generateTable(int maxWeight)
 {
-    maxValueTable = new int*[maxWeight + 1];
-    for(int i = 0; i < maxWeight + 1; i++)
-    {
-        maxValueTable[i] = new int[numberOfItems + 1];
-    }
+    maxValueTable.resize(maxWeight + 1);
+    for(int i = 0; i < maxWeight + 1; i++) 
+        maxValueTable[i].resize(numberOfItems + 1);
     
-    //dummy values to test out display
-    for(int y = 0; y <= numberOfItems; y++)
+    //Knapsack Algorithm
+    for(int i = 0; i <= maxWeight; i++)
     {
-        for(int x = 0; x <= maxWeight; x++)
+        maxValueTable[i][0] = 0;
+    }
+    for(int j = 1; j <= maxWeight; j++)
+    {
+        for(int i = 0; i <= numberOfItems; i++)
         {
-            maxValueTable[x][y] = x;
+            if(itemList[i].weight > j)
+            {
+                maxValueTable[j][i] = maxValueTable[j][i-1];
+            }
+            else
+            {
+                maxValueTable[j][i] = max(maxValueTable[j][i-1], itemList[i].value + maxValueTable[j - itemList[i].weight][i - 1]);
+            }
         }
     }
 }
@@ -92,7 +101,7 @@ void Knapsack::displayTable(int maxWeight)
     }
     
     //Display Table
-    for(int y = 0; y <= numberOfItems; y++)
+    for(int y = 0; y < numberOfItems; y++)
     {
         for(int x = 0; x <= maxWeight; x++)
         {
